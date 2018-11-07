@@ -17,10 +17,17 @@ class MainAdapter : RecyclerView.Adapter<MainViewHolder>() {
         // Add sleep to recreate work on the main thread
         if (position % 50 == 0) {
             try {
-                Thread.sleep(25)
+                Thread.sleep(20)
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             }
+        } else if (position % 101 == 0) {
+            try {
+                Thread.sleep(50)
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            }
+
         }
     }
 
