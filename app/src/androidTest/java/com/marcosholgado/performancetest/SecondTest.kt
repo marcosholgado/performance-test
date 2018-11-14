@@ -9,7 +9,6 @@ import androidx.test.jank.JankTest
 import androidx.test.jank.JankTestBase
 import androidx.test.rule.ActivityTestRule
 import androidx.test.uiautomator.UiDevice
-import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.UiScrollable
 import androidx.test.uiautomator.UiSelector
 import org.junit.Rule
@@ -17,7 +16,6 @@ import org.junit.Rule
 class SecondTest : JankTestBase() {
 
     private lateinit var device: UiDevice
-    private lateinit var recyclerView: UiObject2
 
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
