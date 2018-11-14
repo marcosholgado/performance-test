@@ -23,7 +23,7 @@ import org.junit.Rule
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class MyClassTest {
+class FirstTest {
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
 
