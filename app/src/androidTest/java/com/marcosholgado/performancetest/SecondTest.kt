@@ -50,7 +50,7 @@ class SecondTest : JankTestBase() {
 
     @JankTest(beforeTest = "launchApp", expectedFrames = EXPECTED_FRAMES, defaultIterationCount = 1)
     @GfxMonitor(processName = PACKAGE_NAME)
-    fun testDialerCallInit() {
+    fun testSecond() {
         for (i in 0 until INNER_LOOP) {
             val appViews = UiScrollable(UiSelector().scrollable(true))
             appViews.setAsVerticalList()

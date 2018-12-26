@@ -4,6 +4,10 @@ import android.content.Intent
 import android.content.OperationApplicationException
 import android.os.RemoteException
 import android.os.SystemClock
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.jank.GfxMonitor
 import androidx.test.jank.JankTest
 import androidx.test.jank.JankTestBase
@@ -16,12 +20,12 @@ import com.marcosholgado.performancetest.helpers.MyFactory
 import org.junit.Rule
 
 @UseMonitorFactory(MyFactory::class)
-class ThirdTest : JankTestBase() {
+class FourthTest : JankTestBase() {
 
     private lateinit var device: UiDevice
 
-    @get:Rule
-    val activityRule = ActivityTestRule(MainActivity::class.java)
+//    @get:Rule
+//    val activityRule = ActivityTestRule(MainActivity::class.java)
 
     @Throws(Exception::class)
     public override fun setUp() {
@@ -32,7 +36,7 @@ class ThirdTest : JankTestBase() {
 
     @Throws(Exception::class)
     override fun tearDown() {
-        device.unfreezeRotation()
+//        device.unfreezeRotation()
         super.tearDown()
     }
 
@@ -51,21 +55,25 @@ class ThirdTest : JankTestBase() {
         SystemClock.sleep(200)
     }
 
-    @JankTest(beforeTest = "launchApp", expectedFrames = EXPECTED_FRAMES, defaultIterationCount = 2)
+    @JankTest(beforeTest = "launchApp", expectedFrames = EXPECTED_FRAMES, defaultIterationCount = 1)
     @GfxMonitor(processName = PACKAGE_NAME)
-    fun testThird() {
+    fun testFourth() {
         for (i in 0 until INNER_LOOP) {
-            val appViews = UiScrollable(UiSelector().scrollable(true))
-            appViews.setAsVerticalList()
-            appViews.scrollTextIntoView("This is item 24")
-            appViews.scrollTextIntoView("This is item 1")
+            for (i in 0..30) {
+                Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
+                    .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(i))
+            }
+            for (i in 30.downTo(1)) {
+                Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
+                    .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(i))
+            }
         }
         SystemClock.sleep(200)
     }
 
     companion object {
         private const val INNER_LOOP = 2
-        private const val EXPECTED_FRAMES = 70
+        private const val EXPECTED_FRAMES = 7000
         private const val PACKAGE_NAME = "com.marcosholgado.performancetest"
     }
 }

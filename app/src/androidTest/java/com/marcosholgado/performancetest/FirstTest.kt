@@ -31,7 +31,7 @@ class FirstTest {
     var list = mutableListOf<Float>()
 
     @Test
-    fun scrollsThroughList() {
+    fun testFirst() {
 
         disposable = createObservable()
             .subscribeOn(Schedulers.trampoline())

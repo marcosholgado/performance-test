@@ -15,20 +15,21 @@ class MainAdapter : RecyclerView.Adapter<MainViewHolder>() {
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         (holder.itemView as TextView).text = "This is item $position"
         // Add sleep to recreate work on the main thread
-        if (position % 2 == 0) {
-            try {
-                Thread.sleep(100)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-        } else if (position % 5 == 0) {
-            try {
-                Thread.sleep(150)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-
-        }
+        Thread.sleep(150)
+//        if (position % 2 == 0) {
+//            try {
+//                Thread.sleep(150)
+//            } catch (e: InterruptedException) {
+//                e.printStackTrace()
+//            }
+//        } else if (position % 3 == 0) {
+//            try {
+//                Thread.sleep(150)
+//            } catch (e: InterruptedException) {
+//                e.printStackTrace()
+//            }
+//
+//        }
     }
 
     override fun getItemCount(): Int = 50
