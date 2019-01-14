@@ -110,10 +110,11 @@ class FirstTest {
 
         Log.d("First Test", "Percentage of janky frames was $percJankyFrames")
 
-        assertWithMessage("Janky frames over $PERCENTAGE% value was $percJankyFrames%").that(percJankyFrames).isLessThan(PERCENTAGE)
+        assertWithMessage("Janky frames over $PERCENTAGE_UI% value was $percJankyFrames%").that(percJankyFrames).isLessThan(PERCENTAGE_UI)
     }
 
     companion object {
         private const val PERCENTAGE = 20f
+        private const val PERCENTAGE_UI = 5f
     }
 }
