@@ -12,20 +12,13 @@ import androidx.test.jank.GfxMonitor
 import androidx.test.jank.JankTest
 import androidx.test.jank.JankTestBase
 import androidx.test.jank.annotations.UseMonitorFactory
-import androidx.test.rule.ActivityTestRule
 import androidx.test.uiautomator.UiDevice
-import androidx.test.uiautomator.UiScrollable
-import androidx.test.uiautomator.UiSelector
 import com.marcosholgado.performancetest.helpers.MyFactory
-import org.junit.Rule
 
 @UseMonitorFactory(MyFactory::class)
 class FourthTest : JankTestBase() {
 
     private lateinit var device: UiDevice
-
-//    @get:Rule
-//    val activityRule = ActivityTestRule(MainActivity::class.java)
 
     @Throws(Exception::class)
     public override fun setUp() {
@@ -36,7 +29,6 @@ class FourthTest : JankTestBase() {
 
     @Throws(Exception::class)
     override fun tearDown() {
-//        device.unfreezeRotation()
         super.tearDown()
     }
 
@@ -55,7 +47,7 @@ class FourthTest : JankTestBase() {
         SystemClock.sleep(200)
     }
 
-    @JankTest(beforeTest = "launchApp", expectedFrames = EXPECTED_FRAMES, defaultIterationCount = 1)
+    @JankTest(beforeTest = "launchApp", expectedFrames = EXPECTED_PERC_FRAMES, defaultIterationCount = 1)
     @GfxMonitor(processName = PACKAGE_NAME)
     fun testFourth() {
         for (i in 0 until INNER_LOOP) {
@@ -73,7 +65,7 @@ class FourthTest : JankTestBase() {
 
     companion object {
         private const val INNER_LOOP = 2
-        private const val EXPECTED_FRAMES = 7000
+        private const val EXPECTED_PERC_FRAMES = 97
         private const val PACKAGE_NAME = "com.marcosholgado.performancetest"
     }
 }

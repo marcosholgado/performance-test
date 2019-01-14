@@ -51,7 +51,7 @@ class ThirdTest : JankTestBase() {
         SystemClock.sleep(200)
     }
 
-    @JankTest(beforeTest = "launchApp", expectedFrames = EXPECTED_FRAMES, defaultIterationCount = 2)
+    @JankTest(beforeTest = "launchApp", expectedFrames = EXPECTED_PERC_FRAMES, defaultIterationCount = 2)
     @GfxMonitor(processName = PACKAGE_NAME)
     fun testThird() {
         for (i in 0 until INNER_LOOP) {
@@ -65,7 +65,7 @@ class ThirdTest : JankTestBase() {
 
     companion object {
         private const val INNER_LOOP = 2
-        private const val EXPECTED_FRAMES = 99
+        private const val EXPECTED_PERC_FRAMES = 99
         private const val PACKAGE_NAME = "com.marcosholgado.performancetest"
     }
 }
