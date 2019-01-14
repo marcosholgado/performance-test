@@ -62,7 +62,7 @@ class SecondTest : JankTestBase() {
 
     companion object {
         private const val INNER_LOOP = 2
-        private const val EXPECTED_FRAMES = 800
+        private const val EXPECTED_FRAMES = 450
         private const val PACKAGE_NAME = "com.marcosholgado.performancetest"
     }
 }

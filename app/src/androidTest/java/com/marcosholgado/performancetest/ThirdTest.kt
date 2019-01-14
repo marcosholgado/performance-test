@@ -65,7 +65,7 @@ class ThirdTest : JankTestBase() {
 
     companion object {
         private const val INNER_LOOP = 2
-        private const val EXPECTED_FRAMES = 70
+        private const val EXPECTED_FRAMES = 99
         private const val PACKAGE_NAME = "com.marcosholgado.performancetest"
     }
 }

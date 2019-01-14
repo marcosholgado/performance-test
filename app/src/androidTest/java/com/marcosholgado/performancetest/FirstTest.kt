@@ -2,6 +2,7 @@ package com.marcosholgado.performancetest
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.FrameMetrics
 import android.view.Window
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,7 @@ import org.junit.Rule
 class FirstTest {
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
-    var jankFrames = 0f
+    var percJankyFrames = 0f
 
     @Test
     fun testFirst() {
@@ -44,7 +45,7 @@ class FirstTest {
                     if (totalDurationInMillis > 25f) {
                         jankyFrames++
                         val percentage = jankyFrames.toFloat() / totalFrames * 100
-                        jankFrames = percentage
+                        percJankyFrames = percentage
                     }
                 }
             }, handler)
@@ -58,6 +59,12 @@ class FirstTest {
                 .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(i))
         }
 
-        assertWithMessage("Janky frames over 20% value was $jankFrames%").that(jankFrames).isLessThan(20f)
+        Log.d("First Test", "Percentage of janky frames was $percJankyFrames")
+
+        assertWithMessage("Janky frames over $PERCENTAGE% value was $percJankyFrames%").that(percJankyFrames).isLessThan(PERCENTAGE)
+    }
+
+    companion object {
+        private const val PERCENTAGE = 20f
     }
 }
