@@ -1,7 +1,6 @@
-package com.marcosholgado.performancetest.percentil
+package com.marcosholgado.performancetest.fifthtest
 
 import android.os.Build
-import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.jank.IMonitor
 import androidx.test.platform.app.InstrumentationRegistry

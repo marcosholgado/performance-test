@@ -1,4 +1,4 @@
-package com.marcosholgado.performancetest.percentil
+package com.marcosholgado.performancetest.fifthtest
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)

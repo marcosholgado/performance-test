@@ -1,4 +1,4 @@
-package com.marcosholgado.performancetest.percentil
+package com.marcosholgado.performancetest.fifthtest
 
 import android.app.Instrumentation
 import android.os.Bundle
