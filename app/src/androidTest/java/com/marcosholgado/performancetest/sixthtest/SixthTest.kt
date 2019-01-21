@@ -1,6 +1,5 @@
 package com.marcosholgado.performancetest.sixthtest
 
-import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
@@ -27,8 +26,29 @@ class SixthTest {
     }
 
     @Test
-    @PerformanceTest(PACKAGE_NAME, EXPECTED_MSECS)
+    @PerformanceTest(
+        PACKAGE_NAME,
+        PerformanceTest.PerfType.AVG_FRAME_TIME_95TH,
+        18,
+        PerformanceTest.AssertionType.GREATER_OR_EQUAL
+    )
     fun testSixth() {
+        for (i in 0 until INNER_LOOP) {
+            val appViews = UiScrollable(UiSelector().scrollable(true))
+            appViews.setAsVerticalList()
+            appViews.scrollTextIntoView("This is item 24")
+            appViews.scrollTextIntoView("This is item 1")
+        }
+    }
+
+    @Test
+    @PerformanceTest(
+        PACKAGE_NAME,
+        PerformanceTest.PerfType.AVG_NUM_JANKY,
+        5,
+        PerformanceTest.AssertionType.LESS_OR_EQUAL
+        )
+    fun testSixth2() {
         for (i in 0 until INNER_LOOP) {
             val appViews = UiScrollable(UiSelector().scrollable(true))
             appViews.setAsVerticalList()
@@ -39,9 +59,6 @@ class SixthTest {
 
     companion object {
         private const val INNER_LOOP = 2
-        private const val EXPECTED_MSECS = 18
         private const val PACKAGE_NAME = "com.marcosholgado.performancetest"
-        internal val API_LEVEL_ACTUAL =
-            Build.VERSION.SDK_INT + if ("REL" == Build.VERSION.CODENAME) 0 else 1
     }
 }

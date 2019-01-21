@@ -5,7 +5,6 @@ import android.os.Build
 import androidx.test.jank.IMonitor
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
-import com.marcosholgado.performancetest.fifthtest.PercentileMonitor
 import junit.framework.TestCase
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
@@ -25,7 +24,7 @@ open class ActivityPerfTestRule<T: Activity>(activityClass: Class<T>): ActivityT
     override fun apply(base: Statement?, description: Description?): Statement {
         annotation = description?.getAnnotation(PerformanceTest::class.java)
         annotation?.let {
-            monitor = PercentileMonitor(InstrumentationRegistry.getInstrumentation(), it.processName)
+            monitor = PerfMonitor(InstrumentationRegistry.getInstrumentation(), it.processName)
         }
         return super.apply(base, description)
     }
@@ -38,15 +37,23 @@ open class ActivityPerfTestRule<T: Activity>(activityClass: Class<T>): ActivityT
     override fun afterActivityFinished() {
         monitor?.let {
             val results = it.stopIteration()
-            val percentile = results?.getInt("percentilesValue", Integer.MAX_VALUE)
+            val res: Double = results?.get(annotation?.perfType?.type) as Double
 
+            val assertion = when(annotation?.assertionType) {
+                PerformanceTest.AssertionType.LESS -> res < annotation!!.threshold
+                PerformanceTest.AssertionType.LESS_OR_EQUAL -> res <= annotation!!.threshold
+                PerformanceTest.AssertionType.GREATER -> res > annotation!!.threshold
+                PerformanceTest.AssertionType.GREATER_OR_EQUAL -> res >= annotation!!.threshold
+                PerformanceTest.AssertionType.EQUAL -> res == annotation!!.threshold.toDouble()
+                null -> false
+            }
             TestCase.assertTrue(
                 String.format(
-                    "Too few frames received. Monitor: %s, Expected: %d, Received: %d.",
-                    it::class.java.simpleName, annotation!!.percentile,
-                    percentile
+                    "Monitor: %s, Expected: %d, Received: %f.",
+                    it::class.java.simpleName, annotation!!.threshold,
+                    res
                 ),
-                percentile!! < annotation!!.percentile
+                assertion
             )
         }
         super.afterActivityFinished()

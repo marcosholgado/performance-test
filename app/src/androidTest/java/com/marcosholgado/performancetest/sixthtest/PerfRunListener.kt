@@ -1,9 +1,9 @@
 package com.marcosholgado.performancetest.sixthtest
 
+import android.os.Build
 import android.util.Log
 import androidx.test.jank.IMonitor
 import androidx.test.platform.app.InstrumentationRegistry
-import com.marcosholgado.performancetest.fifthtest.PercentileMonitor
 import junit.framework.TestCase
 import org.junit.runner.Description
 import org.junit.runner.notification.RunListener
@@ -34,14 +34,19 @@ class PerfRunListener: RunListener() {
         super.testFinished(description)
     }
 
-    fun init(description: Description) {
-        if (SixthTest.API_LEVEL_ACTUAL <= 22) {
+    private fun init(description: Description) {
+        if (API_LEVEL_ACTUAL <= 22) {
             error("Not supported by current platform.")
         } else {
             annotation = description.getAnnotation(PerformanceTest::class.java)
-            Log.d("MARCOS", "Annotacion value is ${annotation.percentile}")
-            monitor = PercentileMonitor(InstrumentationRegistry.getInstrumentation(), annotation.processName)
+            Log.d("MARCOS", "Annotacion value is ${annotation.threshold}")
+            monitor = PerfMonitor(InstrumentationRegistry.getInstrumentation(), annotation.processName)
         }
+    }
+
+    companion object {
+        internal val API_LEVEL_ACTUAL =
+            Build.VERSION.SDK_INT + if ("REL" == Build.VERSION.CODENAME) 0 else 1
     }
 
 }
