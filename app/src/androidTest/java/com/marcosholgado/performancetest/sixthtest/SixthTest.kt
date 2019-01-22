@@ -30,7 +30,7 @@ class SixthTest {
         PACKAGE_NAME,
         PerformanceTest.PerfType.AVG_FRAME_TIME_95TH,
         18,
-        PerformanceTest.AssertionType.GREATER_OR_EQUAL
+        PerformanceTest.AssertionType.LESS_OR_EQUAL
     )
     fun testSixth() {
         for (i in 0 until INNER_LOOP) {

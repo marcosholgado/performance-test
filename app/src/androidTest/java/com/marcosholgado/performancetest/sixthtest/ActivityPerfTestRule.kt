@@ -50,7 +50,7 @@ open class ActivityPerfTestRule<T: Activity>(activityClass: Class<T>): ActivityT
             TestCase.assertTrue(
                 String.format(
                     "Monitor: %s, Expected: %d, Received: %f.",
-                    it::class.java.simpleName, annotation!!.threshold,
+                    annotation?.perfType?.type, annotation!!.threshold,
                     res
                 ),
                 assertion
