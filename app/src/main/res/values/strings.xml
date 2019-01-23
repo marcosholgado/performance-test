@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Performance Test</string>
+    <string name="press_to_leak">Press to leak</string>
 </resources>

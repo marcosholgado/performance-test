@@ -1,0 +1,6 @@
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.marcosholgado.performancetest.test">
+
+    <application android:name="com.marcosholgado.performancetest.TestApplication"/>
+</manifest>
