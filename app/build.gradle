@@ -14,7 +14,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //      testInstrumentationRunnerArguments listener: "com.marcosholgado.performancetest.sixthtest.PerfRunListener"
 //      testInstrumentationRunnerArgument "listener", "com.squareup.leakcanary.FailTestOnLeakRunListener"
-        testInstrumentationRunnerArgument "listener", "com.marcosholgado.performancetest.eighthTest.MyLeakRunListener"
+//      testInstrumentationRunnerArgument "listener", "com.marcosholgado.performancetest.eighthTest.MyLeakRunListener"
+        testInstrumentationRunnerArgument "listener", "com.marcosholgado.performancetest.ninthTest.MyOtherLeakRunListener"
     }
 
     buildTypes {
