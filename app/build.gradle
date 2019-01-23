@@ -13,7 +13,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //      testInstrumentationRunnerArguments listener: "com.marcosholgado.performancetest.sixthtest.PerfRunListener"
-        testInstrumentationRunnerArgument "listener", "com.squareup.leakcanary.FailTestOnLeakRunListener"
+//      testInstrumentationRunnerArgument "listener", "com.squareup.leakcanary.FailTestOnLeakRunListener"
+        testInstrumentationRunnerArgument "listener", "com.marcosholgado.performancetest.eighthTest.MyLeakRunListener"
     }
 
     buildTypes {
@@ -21,9 +22,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    testOptions {
-        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
     useLibrary 'android.test.base'
 }
@@ -37,15 +35,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.core:core-ktx:1.0.1'
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
-    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-instrumentation:1.6.3"
-
-
     testImplementation 'junit:junit:4.12'
 
     // Core library
     androidTestImplementation 'androidx.test:core:1.1.0'
-    androidTestUtil 'androidx.test:orchestrator:1.1.1'
 
     // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation 'androidx.test:runner:1.1.1'
@@ -65,5 +58,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.1'
     androidTestImplementation 'androidx.test.janktesthelper:janktesthelper:1.0.1'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+
+    // LeakCanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-instrumentation:1.6.3"
 
 }

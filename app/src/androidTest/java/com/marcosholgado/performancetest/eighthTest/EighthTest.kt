@@ -1,4 +1,4 @@
-package com.marcosholgado.performancetest.seventhTest
+package com.marcosholgado.performancetest.eighthTest
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -13,7 +13,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.Rule
 
-class SeventhTest {
+class EighthTest {
 
     private lateinit var device: UiDevice
 
@@ -24,6 +24,12 @@ class SeventhTest {
     fun setup() {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         device.unfreezeRotation()
+    }
+
+    @Test
+    @IgnoreLeaks("Ignore this")
+    fun testIgnoreLeaks() {
+        onView(withId(R.id.button)).perform(click())
     }
 
     @Test
