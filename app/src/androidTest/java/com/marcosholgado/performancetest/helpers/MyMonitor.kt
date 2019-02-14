@@ -159,15 +159,17 @@ class MyMonitor(
                     if (part != null) {
                         // Parse was successful. Add the numeric value to the accumulated list of
                         // values for that stat.
-                        if (stat.type == Int::class.java) {
-                            val stats = accumulatedStats[stat] as MutableList<Int>
-                            stats.add(Integer.valueOf(part!!))
-                        } else if (stat.type == Double::class.java) {
-                            val stats = accumulatedStats[stat] as MutableList<Double>
-                            stats.add(java.lang.Double.valueOf(part!!))
-                        } else {
-                            // Shouldn't get here
-                            throw IllegalStateException("Unsupported JankStat type")
+                        when {
+                            stat.type == Int::class.java -> {
+                                val stats = accumulatedStats[stat] as MutableList<Int>
+                                stats.add(Integer.valueOf(part))
+                            }
+                            stat.type == Double::class.java -> {
+                                val stats = accumulatedStats[stat] as MutableList<Double>
+                                stats.add(java.lang.Double.valueOf(part))
+                            }
+                            else -> // Shouldn't get here
+                                throw IllegalStateException("Unsupported JankStat type")
                         }
                         break
                     }
@@ -222,7 +224,6 @@ class MyMonitor(
 
             ret.add(value / total * 100.0f)
         }
-
         return ret
     }
 
@@ -327,23 +328,7 @@ class MyMonitor(
             slowDrawPercent
         )
 
-        // Store average and max of number of frame deadline missed
-//        putAvgMaxInteger(
-//            metrics, GfxMonitor.KEY_AVG_NUM_FRAME_MISSED,
-//            GfxMonitor.KEY_MAX_NUM_FRAME_MISSED,
-//            accumulatedStats[JankStat.NUM_FRAME_DEADLINE_MISSED] as List<Int>
-//        )
-
         return metrics
-    }
-
-    private fun getMatchGroup(input: String, pattern: Pattern, groupIndex: Int): String? {
-        var ret: String? = null
-        val matcher = pattern.matcher(input)
-        if (matcher.matches()) {
-            ret = matcher.group(groupIndex)
-        }
-        return ret
     }
 
     /**

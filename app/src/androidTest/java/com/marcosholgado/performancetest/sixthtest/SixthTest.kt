@@ -27,10 +27,10 @@ class SixthTest {
 
     @Test
     @PerformanceTest(
-        PACKAGE_NAME,
-        PerformanceTest.PerfType.AVG_FRAME_TIME_95TH,
-        18,
-        PerformanceTest.AssertionType.LESS_OR_EQUAL
+        processName = PACKAGE_NAME,
+        perfType = PerformanceTest.PerfType.AVG_FRAME_TIME_95TH,
+        threshold = 18,
+        assertionType = PerformanceTest.AssertionType.LESS_OR_EQUAL
     )
     fun testSixth() {
         for (i in 0 until INNER_LOOP) {

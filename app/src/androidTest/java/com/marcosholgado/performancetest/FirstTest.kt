@@ -49,12 +49,12 @@ class FirstTest {
                 override fun onFrameMetricsAvailable(
                     window: Window,
                     frameMetrics: FrameMetrics,
-                    dropCountSinceLastInvocation: Int
+                    dropCount: Int
                 ) {
                     totalFrames++
-                    val totalDurationInMillis =
+                    val duration =
                         (0.000001 * frameMetrics.getMetric(FrameMetrics.TOTAL_DURATION)).toFloat()
-                    if (totalDurationInMillis > 25f) {
+                    if (duration > 16f) {
                         jankyFrames++
                         val percentage = jankyFrames.toFloat() / totalFrames * 100
                         percJankyFrames = percentage
@@ -91,9 +91,9 @@ class FirstTest {
                     dropCountSinceLastInvocation: Int
                 ) {
                     totalFrames++
-                    val totalDurationInMillis =
+                    val duration =
                         (0.000001 * frameMetrics.getMetric(FrameMetrics.TOTAL_DURATION)).toFloat()
-                    if (totalDurationInMillis > 25f) {
+                    if (duration > 16f) {
                         jankyFrames++
                         val percentage = jankyFrames.toFloat() / totalFrames * 100
                         percJankyFrames = percentage
