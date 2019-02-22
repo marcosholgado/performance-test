@@ -10,15 +10,9 @@ import com.marcosholgado.performancetest.R
 import org.junit.Test
 import org.junit.Rule
 
-class NinthTest {
-
+class MyLeakTest {
     @get:Rule
     var mainActivityActivityTestRule = ActivityTestRule(LeakActivity::class.java)
-
-    @Test
-    fun testIgnoreLeaks() {
-        onView(withId(R.id.button)).perform(click())
-    }
 
     @Test
     @LeakTest
