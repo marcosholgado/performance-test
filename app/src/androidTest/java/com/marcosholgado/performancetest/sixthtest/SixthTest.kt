@@ -1,6 +1,5 @@
 package com.marcosholgado.performancetest.sixthtest
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiScrollable
@@ -9,10 +8,7 @@ import com.marcosholgado.performancetest.MainActivity
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-
-@RunWith(AndroidJUnit4::class)
 class SixthTest {
 
     private lateinit var device: UiDevice

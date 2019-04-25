@@ -4,7 +4,6 @@
     package="com.marcosholgado.performancetest">
 
     <application
-        android:name=".MyApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
