@@ -1,6 +1,6 @@
 package com.marcosholgado.performancetest.ninthTest
 
-import com.squareup.leakcanary.FailTestOnLeakRunListener
+import leakcanary.FailTestOnLeakRunListener
 import org.junit.runner.Description
 
 class MyOtherLeakRunListener: FailTestOnLeakRunListener() {

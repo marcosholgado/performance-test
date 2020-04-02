@@ -6,6 +6,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.marcosholgado.performancetest.LeakActivity
 import com.marcosholgado.performancetest.R
+import leakcanary.FailTestOnLeak
 
 import org.junit.Test
 import org.junit.Rule
@@ -15,7 +16,7 @@ class MyLeakTest {
     var mainActivityActivityTestRule = ActivityTestRule(LeakActivity::class.java)
 
     @Test
-    @LeakTest
+    @FailTestOnLeak
     fun testLeaks() {
         onView(withId(R.id.button)).perform(click())
     }
