@@ -37,7 +37,8 @@ open class ActivityPerfTestRule<T: Activity>(activityClass: Class<T>): ActivityT
     override fun afterActivityFinished() {
         monitor?.let {
             val results = it.stopIteration()
-            val res: Double = results?.get(annotation?.perfType?.type) as Double
+            val type = annotation?.perfType?.type
+            val res: Double = results.getDouble(type, results.getInt(type).toDouble())
 
             val assertion = when(annotation?.assertionType) {
                 PerformanceTest.AssertionType.LESS -> res < annotation!!.threshold
@@ -50,7 +51,7 @@ open class ActivityPerfTestRule<T: Activity>(activityClass: Class<T>): ActivityT
             TestCase.assertTrue(
                 String.format(
                     "Monitor: %s, Expected: %d, Received: %f.",
-                    annotation?.perfType?.type, annotation!!.threshold,
+                    type, annotation!!.threshold,
                     res
                 ),
                 assertion
